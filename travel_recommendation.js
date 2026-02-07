@@ -71,19 +71,20 @@ async function searchDestinations() {
     searchResultsDiv.innerHTML = "";
     searchResults.forEach(destination => {
         let timeZone = "";
+        const littleName = destination.name.toLowerCase();
         //bunch of if statements to set time zone
         //would be beter to do this with a lookup table for 'real' data
-        if(searchString.includes("australia")){
+        if(littleName.includes("australia")){
             timeZone = "Australia/Sydney";
-        } else if (searchString.includes("brazil")){
+        } else if (littleName.includes("brazil")){
             timeZone = "America/Sao_Paulo";
-        } else if (searchString.includes("japan")){
+        } else if (littleName.includes("japan")){
             timeZone = "Asia/Tokyo";
-        } else if (searchString.includes("cambodia")){
+        } else if (littleName.includes("cambodia")){
             timeZone = "Asia/Phnom_Penh";
-        } else if (searchString.includes("india")){
+        } else if (littleName.includes("india")){
             timeZone = "Asia/Kolkata";
-        } else if (searchString.includes("polynesia")){
+        } else if (littleName.includes("polynesia")){
             timeZone = "Pacific/Tahiti";
         }
 
