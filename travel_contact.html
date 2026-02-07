@@ -18,21 +18,31 @@
                 <li><a href="./travel_recommendation.html" id="home">Home </a></li>
                 <li><a href="./travel_about.html" id="about">About Us </a></li>
                 <li><a href="./travel_contact.html" id="contact">Contact Us </a></li>
-                <li><input type="text" id="searchInput" placeholder="Enter a destination or keyword"> </li>
-                <li><button id='searchBtn'>Search</button></li>
-                <li><button id='resetBtn'>Reset</button></li>
             </ul>
         </nav>
         <div class="page">
-            <div class="welcomeMsg">
-                <h1>Go to some Places and do some Things</h1>
-                <p>This is a website where you can search for places to go
-                    and then go there and do the things that are at the places.</p>
-                <p>Note: this is a class project, I cannot actually
-                    send you to places or help you do things.</p>
-                <button id="bookNow">Book Now</button>
+            <div class="contactMsg">
+                <h1>Contact Us</h1>
+                <p>Please let us know how we're doing!</p>
+                <p>Note: this isn't going to actually go anywhere, but
+                    if you want to see some of my other work or get in touch with me,
+                    go to https://github.com/King-Forge</p>
+                <form id="contactForm">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn">Submit</button>
+                </form>
             </div>
-            <div class="searchResults" id="searchResults"></div>
             <div class="socials">
                 <a href="https://x.com" target="_blank">
                     <i class="fa-brands fa-x-twitter"></i>

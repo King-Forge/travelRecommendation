@@ -1,0 +1,370 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Base */
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+    line-height: 1.6;
+  }
+  
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 0 40px;
+    background-color: #1f2933;
+    color: #f5f7fa;
+    z-index: 1000;
+  }
+  
+  nav h1 {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  
+  nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 12px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #f5f7fa;
+    font-weight: 500;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  nav input[type="text"] {
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: none;
+  }
+  
+  nav button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  #searchBtn {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  #resetBtn {
+    background-color: #6b7280;
+    color: white;
+  }
+  
+  nav button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Page layout (all pages use .page) */
+  .page {
+    margin-top: 70px;
+    padding: 60px 60px 60px 120px;
+    min-height: 100vh;
+  
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+    position: relative;
+  }
+  
+  .page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.65);
+    z-index: 0;
+  }
+  
+  /* Shared text blocks */
+  .welcomeMsg,
+  .aboutMsg {
+    max-width: 950px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .welcomeMsg h1,
+  .aboutMsg h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .welcomeMsg p,
+  .aboutMsg p {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+  
+  /* Home CTA */
+  #bookNow {
+    margin-top: 20px;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: bold;
+  
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  #bookNow:hover {
+    background-color: #dc2626;
+  }
+  
+  /* About layout: h2 left, cards area right */
+  .aboutMsg {
+    display: grid;
+    grid-template-columns: 220px minmax(900px, 1fr);
+    column-gap: 28px;
+    align-items: start;
+  }
+  
+  /* Intro spans full width */
+  .aboutMsg > h1,
+  .aboutMsg > p {
+    grid-column: 1 / -1;
+  }
+  
+  /* Meet the Team label on the left */
+  .aboutMsg > h2 {
+    grid-column: 1;
+    margin-top: 26px;
+    font-size: 1.6rem;
+  }
+  
+  /* Cards container to the right of h2 */
+  .teamCards {
+    grid-column: 2;
+    margin-top: 26px;
+  
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    max-width: 1100px;
+  }
+  
+  /* Individual card box */
+  .teamCard {
+    width: 260px;
+    border-radius: 12px;
+    overflow: hidden;
+  
+    background: rgba(245, 247, 250, 0.92);
+    border: 1px solid rgba(31, 41, 51, 0.15);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Card header */
+  .teamCard .teamMember {
+    margin: 0;
+    padding: 10px 12px;
+    background: rgba(31, 41, 51, 0.92);
+    color: #f5f7fa;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  
+  /* Card body */
+  .teamCard .teamDetail {
+    margin: 0;
+    padding: 12px;
+    font-size: 1.02rem;
+  }
+  
+  /* Social bar */
+  .socials {
+    position: fixed;
+    left: 0;
+    bottom: 10%;
+    width: 80px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  
+    padding: 20px 0;
+    background-color: #1f2933;
+    z-index: 2;
+  }
+  
+  .socials a {
+    color: #f5f7fa;
+    font-size: 26px;
+    text-decoration: none;
+  
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+  
+    transition: transform 160ms ease, color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+  }
+  
+  .socials a:hover {
+    color: #3b82f6;
+    background-color: rgba(245, 247, 250, 0.12);
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  }
+  
+  .socials a:active {
+    transform: translateY(-1px) scale(1.03);
+  }
+  
+  /* Responsive nav hook */
+  .nav-toggle {
+    display: none;
+  }
+  
+  .nav-hamburger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-hamburger span,
+  .nav-hamburger span::before,
+  .nav-hamburger span::after {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #f5f7fa;
+    position: relative;
+    transition: transform 160ms ease, opacity 160ms ease;
+  }
+  
+  .nav-hamburger span::before {
+    position: absolute;
+    top: -7px;
+    left: 0;
+  }
+  
+  .nav-hamburger span::after {
+    position: absolute;
+    top: 7px;
+    left: 0;
+  }
+  
+  /* Mobile */
+  @media (max-width: 760px) {
+    nav {
+      padding: 0 16px;
+    }
+  
+    nav h1 {
+      display: none;
+    }
+  
+    .nav-hamburger {
+      display: inline-flex;
+    }
+  
+    nav ul {
+      position: absolute;
+      top: 70px;
+      right: 0;
+      left: 0;
+  
+      display: none;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+  
+      padding: 14px 16px 18px;
+      background-color: #1f2933;
+      border-top: 1px solid rgba(245, 247, 250, 0.15);
+    }
+  
+    nav ul li {
+      width: 100%;
+    }
+  
+    nav a,
+    nav input[type="text"],
+    nav button {
+      width: 100%;
+    }
+  
+    nav input[type="text"] {
+      padding: 10px 10px;
+    }
+  
+    nav button {
+      padding: 10px 12px;
+    }
+  
+    .nav-toggle:checked ~ ul {
+      display: flex;
+    }
+  
+    .nav-toggle:checked + label span {
+      transform: rotate(45deg);
+    }
+  
+    .nav-toggle:checked + label span::before {
+      transform: rotate(90deg);
+      top: 0;
+    }
+  
+    .nav-toggle:checked + label span::after {
+      opacity: 0;
+    }
+  
+    /* About: stack h2 then cards under it */
+    .aboutMsg {
+      grid-template-columns: 1fr;
+    }
+  
+    .aboutMsg > h1,
+    .aboutMsg > p,
+    .aboutMsg > h2,
+    .teamCards {
+      grid-column: 1 / -1;
+    }
+  
+    .teamCards {
+      margin-top: 10px;
+    }
+  
+    .teamCard {
+      width: min(360px, 100%);
+    }
+  }  
