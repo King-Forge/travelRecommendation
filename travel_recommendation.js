@@ -2,7 +2,7 @@
 const searchResultsDiv = document.getElementById("searchResults");
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
-const resetBtn = document.getElementById("resetBtn");
+const resetBtn = document.getElementById("clearBtn");
 
 //register event listeners
 resetBtn.addEventListener("click", resetSearch);
@@ -22,7 +22,7 @@ function resetSearch() {
 
 async function searchDestinations() {
     let searchResults = [];
-    let searchString = searchInput.value;
+    let searchString = searchInput.value.toLowerCase();
     try{
         //get the data from the local JSON and parse it into an object
         destinationList = await fetch("travel_recommendation_api.json");
@@ -37,20 +37,23 @@ async function searchDestinations() {
         //this means we only have to search on a few levels of the JSON
         for (country of destinationList.countries){
             for (city of country.cities){
-                if (city.name.toLowerCase().includes(searchString.toLowerCase())) {
+                if (city.name.toLowerCase().includes(searchString)) {
                     searchResults.push(city);
                 }
             }
         }
         //search temples and beaches separately
         //since they're nested at a different level than countries
+        //if user searches for 'temple', 'temples', 'beach', 'beaches', return all relevant items
         for (temple of destinationList.temples){
-            if (temple.name.toLowerCase().includes(searchString.toLowerCase())){
+            if (temple.name.toLowerCase().includes(searchString) ||
+              searchString.includes("temple")){
                 searchResults.push(temple);
             }
         }
         for (beach of destinationList.beaches){
-            if (beach.name.toLowerCase().includes(searchString.toLowerCase())){
+            if (beach.name.toLowerCase().includes(searchString) ||
+              searchString.includes("beach")){
                 searchResults.push(beach);
             }
         }
@@ -67,9 +70,31 @@ async function searchDestinations() {
 
     searchResultsDiv.innerHTML = "";
     searchResults.forEach(destination => {
+        let timeZone = "";
+        //bunch of if statements to set time zone
+        //would be beter to do this with a lookup table for 'real' data
+        if(searchString.includes("australia")){
+            timeZone = "Australia/Sydney";
+        } else if (searchString.includes("brazil")){
+            timeZone = "America/Sao_Paulo";
+        } else if (searchString.includes("japan")){
+            timeZone = "Asia/Tokyo";
+        } else if (searchString.includes("cambodia")){
+            timeZone = "Asia/Phnom_Penh";
+        } else if (searchString.includes("india")){
+            timeZone = "Asia/Kolkata";
+        } else if (searchString.includes("polynesia")){
+            timeZone = "Pacific/Tahiti";
+        }
+
+        const destinationTime = { timeZone: timeZone, hour12: true, hour: 'numeric', minute: 'numeric'};
+        const formattedTime = new Date().toLocaleTimeString('en-US', destinationTime);
+        console.log(`Current time in ${destination.name} is: ${formattedTime}`);
+
         searchResultsDiv.innerHTML += `<div class="searchResult">
             <h3>Destination: ${destination.name}</h3>
-            <img src="${destination.imageURL}" alt="Photo of ${destination.name}"> 
+            <p>Current local time is: ${formattedTime}</p>
+            <img src="${destination.imageUrl}" alt="Photo of ${destination.name}"> 
             <p>${destination.description}</p>
             </div>`;
     });
