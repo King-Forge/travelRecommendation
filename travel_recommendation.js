@@ -37,7 +37,7 @@ async function searchDestinations() {
         //this means we only have to search on a few levels of the JSON
         for (country of destinationList.countries){
             for (city of country.cities){
-                if (city.name.toLowerCase().contains(searchString.toLowerCase())) {
+                if (city.name.toLowerCase().includes(searchString.toLowerCase())) {
                     searchResults.push(city);
                 }
             }
@@ -45,12 +45,12 @@ async function searchDestinations() {
         //search temples and beaches separately
         //since they're nested at a different level than countries
         for (temple of destinationList.temples){
-            if (temple.name.toLowerCase().contains(searchString.toLowerCase())){
+            if (temple.name.toLowerCase().includes(searchString.toLowerCase())){
                 searchResults.push(temple);
             }
         }
         for (beach of destinationList.beaches){
-            if (beach.name.toLowerCase().contains(searchString.toLowerCase())){
+            if (beach.name.toLowerCase().includes(searchString.toLowerCase())){
                 searchResults.push(beach);
             }
         }
